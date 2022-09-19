@@ -22,8 +22,6 @@ import androidx.navigation.compose.composable
 import com.android254.presentation.about.view.AboutScreen
 import com.android254.presentation.feed.view.FeedScreen
 import com.android254.presentation.home.view.HomeScreen
-import com.android254.presentation.auth.view.LoginScreen
-import com.android254.presentation.auth.view.SignUpScreen
 import com.android254.presentation.sessions.view.SessionsScreen
 
 @Composable
@@ -32,7 +30,7 @@ fun Navigation(
     upDateBottomBarState: (Boolean) -> Unit,
     upDataAppBarState: (Boolean) -> Unit
 ) {
-    NavHost(navController, startDestination = Screens.Login.route) {
+    NavHost(navController, startDestination = Screens.Home.route) {
         composable(Screens.Home.route) {
             upDataAppBarState(true)
             upDateBottomBarState(true)
@@ -52,25 +50,6 @@ fun Navigation(
             upDataAppBarState(true)
             upDateBottomBarState(true)
             AboutScreen()
-        }
-        composable(Screens.Login.route) {
-            upDataAppBarState(false)
-            upDateBottomBarState(false)
-            LoginScreen(
-                navController = navController,
-                navigateToSignUp = {
-                    navController.navigate(Screens.SignUp.route)
-                }
-            )
-        }
-        composable(Screens.SignUp.route) {
-            upDataAppBarState(false)
-            upDateBottomBarState(false)
-            SignUpScreen(
-                navigateToLogin = {
-                    navController.navigate(Screens.Login.route)
-                }
-            )
         }
     }
 }
